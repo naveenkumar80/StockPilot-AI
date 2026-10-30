@@ -2,9 +2,9 @@
   "model_version": "v1.0.0-lgbm",
   "algorithm": "LightGBM + Isotonic Calibration",
   "features_schema_version": "schema_v1_price_news",
-  "trained_at": "2026-10-30T04:33:42.002922",
+  "trained_at": "2026-10-30T04:59:34.880114",
   "samples_count": 857,
-  "training_duration_ms": 2454.09,
+  "training_duration_ms": 779.1,
   "walk_forward_evaluation": {
     "brier_score": 0.2099,
     "log_loss": 0.6058,
