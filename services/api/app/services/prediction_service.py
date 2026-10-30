@@ -51,12 +51,23 @@ class PredictionService:
         return None
 
     def load_model(self, db: Optional[Session] = None, force_reload: bool = False):
-        """Loads and caches the active calibrated ML model artifact."""
+        """Loads and caches the active calibrated ML model artifact from ModelRegistry."""
         if self._model is not None and not force_reload:
             return
 
         version = settings.ACTIVE_MODEL_VERSION
-        artifact_path = self._resolve_artifact_path(version)
+        artifact_path = None
+
+        if db:
+            active_reg = db.query(ModelRegistry).filter(ModelRegistry.is_active == 1).first()
+            if active_reg:
+                version = active_reg.model_version
+                self._model_registry_id = active_reg.id
+                if active_reg.artifact_path and os.path.exists(active_reg.artifact_path):
+                    artifact_path = active_reg.artifact_path
+
+        if not artifact_path:
+            artifact_path = self._resolve_artifact_path(version)
 
         if artifact_path and os.path.exists(artifact_path):
             try:
@@ -71,7 +82,7 @@ class PredictionService:
         else:
             logger.warning(f"Model artifact for '{version}' not found on disk. Inference will use heuristic fallback.")
 
-        if db:
+        if db and not self._model_registry_id:
             reg = db.query(ModelRegistry).filter(ModelRegistry.model_version == version).first()
             if reg:
                 self._model_registry_id = reg.id

@@ -1,0 +1,70 @@
+{
+  "last_updated": "2026-10-30T12:49:27.255983",
+  "tournament_duration_ms": 6023.99,
+  "total_samples": 887,
+  "champion_version": "v1.0.0-lgbm",
+  "champion": {
+    "model_version": "v1.1.0-ensemble",
+    "algorithm": "Stacked Soft-Voting Ensemble (LightGBM + RF)",
+    "tag": "STACKED_ENSEMBLE",
+    "description": "Blended consensus architecture balancing gradient boosting with random subspace bagging.",
+    "composite_score": 0.7855,
+    "roc_auc": 0.5439,
+    "brier_score": 0.2588,
+    "log_loss": 0.8256,
+    "precision_buy": 0.63,
+    "recall_buy": 0.7566,
+    "walk_forward_sharpe": 3.02,
+    "status": "CHAMPION",
+    "promoted_at": "2026-10-30T12:49:27.256024"
+  },
+  "challengers": [
+    {
+      "model_version": "v1.1.0-ensemble",
+      "algorithm": "Stacked Soft-Voting Ensemble (LightGBM + RF)",
+      "tag": "STACKED_ENSEMBLE",
+      "description": "Blended consensus architecture balancing gradient boosting with random subspace bagging.",
+      "composite_score": 0.7855,
+      "roc_auc": 0.5439,
+      "brier_score": 0.2588,
+      "log_loss": 0.8256,
+      "precision_buy": 0.63,
+      "recall_buy": 0.7566,
+      "walk_forward_sharpe": 3.02,
+      "status": "CHALLENGER",
+      "margin_vs_champion": 0.0
+    },
+    {
+      "model_version": "v1.1.0-lgbm",
+      "algorithm": "LightGBM Classifier",
+      "tag": "LIGHTGBM",
+      "description": "Gradient boosted decision trees optimized for asymmetric return momentum.",
+      "composite_score": 0.7841,
+      "roc_auc": 0.5396,
+      "brier_score": 0.2592,
+      "log_loss": 0.7211,
+      "precision_buy": 0.6321,
+      "recall_buy": 0.709,
+      "walk_forward_sharpe": 3.0,
+      "status": "CHALLENGER",
+      "margin_vs_champion": 0.0014
+    },
+    {
+      "model_version": "v1.1.0-rf",
+      "algorithm": "Random Forest Ensemble",
+      "tag": "RANDOM_FOREST",
+      "description": "Bagged ensemble reducing feature correlation variance across market regimes.",
+      "composite_score": 0.7821,
+      "roc_auc": 0.5358,
+      "brier_score": 0.2622,
+      "log_loss": 0.8434,
+      "precision_buy": 0.6388,
+      "recall_buy": 0.7672,
+      "walk_forward_sharpe": 3.1,
+      "status": "CHALLENGER",
+      "margin_vs_champion": 0.0034
+    }
+  ],
+  "feature_importances": [],
+  "selection_criteria": "40% Walk-Forward Cost-Adjusted Sharpe + 30% ROC-AUC + 30% (1 - Brier Score)"
+}
