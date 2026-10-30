@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useEffect, useState, use } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
+import { useParams } from "next/navigation"
 import {
   ArrowLeft,
   TrendingUp,
@@ -25,9 +26,10 @@ import { CandlestickChart } from "@/components/common/CandlestickChart"
 import { SignalBadge } from "@/components/common/SignalBadge"
 import { formatINR, formatPercent, formatDate } from "@/lib/utils"
 
-export default function StockDetailPage({ params }: { params: Promise<{ symbol: string }> }) {
-  const resolvedParams = use(params)
-  const symbol = resolvedParams.symbol.toUpperCase()
+export default function StockDetailPage() {
+  const urlParams = useParams()
+  const rawSymbol = typeof urlParams?.symbol === "string" ? urlParams.symbol : Array.isArray(urlParams?.symbol) ? urlParams.symbol[0] : "RELIANCE"
+  const symbol = (rawSymbol || "RELIANCE").toUpperCase()
 
   const [stock, setStock] = useState<StockItem | null>(null)
   const [candles, setCandles] = useState<Candle[]>([])
