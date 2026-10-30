@@ -1,0 +1,13 @@
+{
+  "name": "stockpilot-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quantitative forecasting and paper trading platform for Indian equities (NSE/BSE)",
+  "scripts": {
+    "dev": "python start.py",
+    "start": "python start.py",
+    "test": "pytest services/api/tests",
+    "build": "npm run --prefix apps/web build"
+  }
+}
+

@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: stockpilot-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-stockpilot}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stockpilot_password}
+      POSTGRES_DB: ${POSTGRES_DB:-stockpilot}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stockpilot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: ./services/api/Dockerfile
+    container_name: stockpilot-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - ENVIRONMENT=development
+      - DATABASE_URL=postgresql+psycopg2://stockpilot:stockpilot_password@postgres:5432/stockpilot
+      - GROWW_API_KEY=${GROWW_API_KEY}
+      - GROWW_ACCESS_TOKEN=${GROWW_ACCESS_TOKEN}
+      - DRISHTI_API_KEY=${DRISHTI_API_KEY}
+      - PYTHONPATH=/app:/app/services/api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: stockpilot-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:

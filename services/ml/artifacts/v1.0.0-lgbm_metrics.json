@@ -1,0 +1,237 @@
+{
+  "model_version": "v1.0.0-lgbm",
+  "algorithm": "LightGBM + Isotonic Calibration",
+  "features_schema_version": "schema_v1_price_news",
+  "trained_at": "2026-10-30T04:33:42.002922",
+  "samples_count": 857,
+  "training_duration_ms": 2454.09,
+  "walk_forward_evaluation": {
+    "brier_score": 0.2099,
+    "log_loss": 0.6058,
+    "roc_auc": 0.807,
+    "accuracy": 0.6511,
+    "precision_buy": 0.6269,
+    "recall_buy": 0.996,
+    "f1_score": 0.7695,
+    "expected_calibration_error": 0.2381,
+    "confusion_matrix": {
+      "true_negatives": 59,
+      "false_positives": 297,
+      "false_negatives": 2,
+      "true_positives": 499
+    },
+    "calibration_bins": [
+      {
+        "predicted": 0.1667,
+        "empirical": 0.0
+      },
+      {
+        "predicted": 0.2788,
+        "empirical": 0.0
+      },
+      {
+        "predicted": 0.3878,
+        "empirical": 0.0
+      },
+      {
+        "predicted": 0.469,
+        "empirical": 0.0513
+      },
+      {
+        "predicted": 0.5643,
+        "empirical": 0.4694
+      },
+      {
+        "predicted": 0.6541,
+        "empirical": 0.405
+      },
+      {
+        "predicted": 0.7505,
+        "empirical": 0.8218
+      }
+    ]
+  },
+  "price_only_vs_news_comparison": {
+    "model_a_price_only": {
+      "brier_score": 0.2666,
+      "log_loss": 0.7523,
+      "roc_auc": 0.5649,
+      "accuracy": 0.5683,
+      "precision_buy": 0.6274,
+      "recall_buy": 0.7,
+      "f1_score": 0.6617,
+      "expected_calibration_error": 0.222,
+      "confusion_matrix": {
+        "true_negatives": 46,
+        "false_positives": 79,
+        "false_negatives": 57,
+        "true_positives": 133
+      },
+      "calibration_bins": [
+        {
+          "predicted": 0.0834,
+          "empirical": 0.5
+        },
+        {
+          "predicted": 0.1479,
+          "empirical": 0.4103
+        },
+        {
+          "predicted": 0.2375,
+          "empirical": 0.5333
+        },
+        {
+          "predicted": 0.3543,
+          "empirical": 0.5556
+        },
+        {
+          "predicted": 0.457,
+          "empirical": 0.7586
+        },
+        {
+          "predicted": 0.551,
+          "empirical": 0.6122
+        },
+        {
+          "predicted": 0.66,
+          "empirical": 0.5909
+        },
+        {
+          "predicted": 0.7459,
+          "empirical": 0.5758
+        },
+        {
+          "predicted": 0.8602,
+          "empirical": 0.7674
+        },
+        {
+          "predicted": 0.9204,
+          "empirical": 0.5714
+        }
+      ]
+    },
+    "model_b_price_plus_news": {
+      "brier_score": 0.2666,
+      "log_loss": 0.7523,
+      "roc_auc": 0.5649,
+      "accuracy": 0.5683,
+      "precision_buy": 0.6274,
+      "recall_buy": 0.7,
+      "f1_score": 0.6617,
+      "expected_calibration_error": 0.222,
+      "confusion_matrix": {
+        "true_negatives": 46,
+        "false_positives": 79,
+        "false_negatives": 57,
+        "true_positives": 133
+      },
+      "calibration_bins": [
+        {
+          "predicted": 0.0834,
+          "empirical": 0.5
+        },
+        {
+          "predicted": 0.1479,
+          "empirical": 0.4103
+        },
+        {
+          "predicted": 0.2375,
+          "empirical": 0.5333
+        },
+        {
+          "predicted": 0.3543,
+          "empirical": 0.5556
+        },
+        {
+          "predicted": 0.457,
+          "empirical": 0.7586
+        },
+        {
+          "predicted": 0.551,
+          "empirical": 0.6122
+        },
+        {
+          "predicted": 0.66,
+          "empirical": 0.5909
+        },
+        {
+          "predicted": 0.7459,
+          "empirical": 0.5758
+        },
+        {
+          "predicted": 0.8602,
+          "empirical": 0.7674
+        },
+        {
+          "predicted": 0.9204,
+          "empirical": 0.5714
+        }
+      ]
+    },
+    "news_uplift_roc_auc": 0.0,
+    "news_uplift_brier": 0.0
+  },
+  "feature_importances": [
+    {
+      "feature": "macd_signal",
+      "importance": 0.194
+    },
+    {
+      "feature": "macd_hist",
+      "importance": 0.1062
+    },
+    {
+      "feature": "realized_vol_20",
+      "importance": 0.0904
+    },
+    {
+      "feature": "bb_bandwidth",
+      "importance": 0.0891
+    },
+    {
+      "feature": "rsi_14",
+      "importance": 0.0839
+    },
+    {
+      "feature": "macd_line",
+      "importance": 0.0813
+    },
+    {
+      "feature": "return_1d",
+      "importance": 0.0511
+    },
+    {
+      "feature": "atr_14_norm",
+      "importance": 0.0498
+    },
+    {
+      "feature": "volume_ratio_20",
+      "importance": 0.0485
+    },
+    {
+      "feature": "bb_percent_b",
+      "importance": 0.0419
+    },
+    {
+      "feature": "dist_ema_50",
+      "importance": 0.0406
+    },
+    {
+      "feature": "dist_ema_21",
+      "importance": 0.0275
+    },
+    {
+      "feature": "return_5d",
+      "importance": 0.0236
+    },
+    {
+      "feature": "return_10d",
+      "importance": 0.0236
+    },
+    {
+      "feature": "return_20d",
+      "importance": 0.0223
+    }
+  ],
+  "artifact_path": "./services/ml/artifacts\\v1.0.0-lgbm.joblib"
+}

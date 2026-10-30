@@ -1,0 +1,73 @@
+# Environment & Secret Configurations
+.env
+.env*.local
+!.env.example
+
+# Local SQLite Database & Storage
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+stockpilot.db
+
+# Dependencies & Package Managers
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js Build Outputs & Cache
+.next/
+out/
+build/
+dist/
+
+# Python Cache & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Operating System & IDE Files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
