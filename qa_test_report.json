@@ -1,0 +1,298 @@
+{
+  "summary": {
+    "total": 41,
+    "passed": 41,
+    "failed": 0,
+    "pass_rate": "100.0%",
+    "timestamp": "2026-10-30T14:22:02.919Z"
+  },
+  "results": [
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: / (Dashboard)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:44.851Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /screener (Stock Screener)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:45.071Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /insights (Market Insights)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:45.444Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /stocks/RELIANCE (Stock Detail (RELIANCE))",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:46.209Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /models (Champion-Challenger Models)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:46.873Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /backtesting (Backtesting Simulator)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:47.228Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /paper-trading (Paper Trading Ledger)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:47.872Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /research (News & AI Research)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:48.178Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /watchlist (Persistent Watchlist)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:48.420Z"
+    },
+    {
+      "suite": "Routes & Navigation",
+      "name": "Route: /settings (Settings & System Health)",
+      "passed": true,
+      "details": "HTTP 200",
+      "timestamp": "2026-10-30T14:21:48.638Z"
+    },
+    {
+      "suite": "Header & Brand",
+      "name": "Live Market Tickers Display",
+      "passed": true,
+      "details": "NIFTY & SENSEX visible",
+      "timestamp": "2026-10-30T14:21:49.551Z"
+    },
+    {
+      "suite": "Command Palette",
+      "name": "Trigger via Header Search / Shortcut",
+      "passed": true,
+      "details": "Spotlight modal opened",
+      "timestamp": "2026-10-30T14:21:50.634Z"
+    },
+    {
+      "suite": "Command Palette",
+      "name": "Search Ticker Filter ('TCS')",
+      "passed": true,
+      "details": "TCS found in palette results",
+      "timestamp": "2026-10-30T14:21:50.974Z"
+    },
+    {
+      "suite": "Command Palette",
+      "name": "Dismiss via Escape",
+      "passed": true,
+      "details": "Modal closed cleanly",
+      "timestamp": "2026-10-30T14:21:51.291Z"
+    },
+    {
+      "suite": "Stock Screener",
+      "name": "Table Rows Rendered",
+      "passed": true,
+      "details": "15 stocks displayed",
+      "timestamp": "2026-10-30T14:21:53.313Z"
+    },
+    {
+      "suite": "Stock Screener",
+      "name": "Instant Search Filter ('INFY')",
+      "passed": true,
+      "details": "Filtered accurately",
+      "timestamp": "2026-10-30T14:21:53.758Z"
+    },
+    {
+      "suite": "Stock Screener",
+      "name": "Signal Filter Click ('BUY')",
+      "passed": true,
+      "details": "BUY filter active",
+      "timestamp": "2026-10-30T14:21:54.583Z"
+    },
+    {
+      "suite": "Quick Paper Trade",
+      "name": "Trade Action Button Visible",
+      "passed": true,
+      "details": "Trade button present in table",
+      "timestamp": "2026-10-30T14:21:56.140Z"
+    },
+    {
+      "suite": "Quick Paper Trade",
+      "name": "Modal Open",
+      "passed": true,
+      "details": "QuickTradeModal rendered",
+      "timestamp": "2026-10-30T14:21:56.736Z"
+    },
+    {
+      "suite": "Quick Paper Trade",
+      "name": "Preset Qty Button (+25)",
+      "passed": true,
+      "details": "Qty adjusted",
+      "timestamp": "2026-10-30T14:21:57.002Z"
+    },
+    {
+      "suite": "Quick Paper Trade",
+      "name": "Simulated Order Execution",
+      "passed": true,
+      "details": "Order filled with receipt",
+      "timestamp": "2026-10-30T14:21:58.087Z"
+    },
+    {
+      "suite": "Technical Chart",
+      "name": "Candlestick SVG Rendered",
+      "passed": true,
+      "details": "19 SVG elements rendered",
+      "timestamp": "2026-10-30T14:21:58.567Z"
+    },
+    {
+      "suite": "Champion-Challenger",
+      "name": "Champion Hero Banner",
+      "passed": true,
+      "details": "Current Champion rendered with live status",
+      "timestamp": "2026-10-30T14:21:58.914Z"
+    },
+    {
+      "suite": "Champion-Challenger",
+      "name": "Leaderboard Candidates Table",
+      "passed": true,
+      "details": "3 models in tournament",
+      "timestamp": "2026-10-30T14:21:58.918Z"
+    },
+    {
+      "suite": "Champion-Challenger",
+      "name": "Active Champion in Production",
+      "passed": true,
+      "details": "Champion model bound to inference pipeline",
+      "timestamp": "2026-10-30T14:21:58.922Z"
+    },
+    {
+      "suite": "Champion-Challenger",
+      "name": "Factor Attribution Display",
+      "passed": true,
+      "details": "Normalized feature gain visible",
+      "timestamp": "2026-10-30T14:21:58.925Z"
+    },
+    {
+      "suite": "Backtesting Engine",
+      "name": "Run Backtest Form",
+      "passed": true,
+      "details": "Configuration controls visible",
+      "timestamp": "2026-10-30T14:21:59.170Z"
+    },
+    {
+      "suite": "Backtesting Engine",
+      "name": "Execution & Metric Cards",
+      "passed": true,
+      "details": "Simulated P&L and risk metrics rendered",
+      "timestamp": "2026-10-30T14:22:00.214Z"
+    },
+    {
+      "suite": "Backtesting Engine",
+      "name": "Trade Log CSV Export Button",
+      "passed": true,
+      "details": "Export action button enabled",
+      "timestamp": "2026-10-30T14:22:00.217Z"
+    },
+    {
+      "suite": "Paper Trading",
+      "name": "Portfolio Snapshot Cards",
+      "passed": true,
+      "details": "Capital metrics loaded",
+      "timestamp": "2026-10-30T14:22:01.167Z"
+    },
+    {
+      "suite": "Paper Trading",
+      "name": "Safety Guardrail Banner",
+      "passed": true,
+      "details": "Zero real-risk guarantee active",
+      "timestamp": "2026-10-30T14:22:01.170Z"
+    },
+    {
+      "suite": "Paper Trading",
+      "name": "Balance Refresh Action Button",
+      "passed": true,
+      "details": "Refresh control available",
+      "timestamp": "2026-10-30T14:22:01.172Z"
+    },
+    {
+      "suite": "Market Insights",
+      "name": "Market Regime & Breadth Cards",
+      "passed": true,
+      "details": "Macro health gauges rendered",
+      "timestamp": "2026-10-30T14:22:01.372Z"
+    },
+    {
+      "suite": "Market Insights",
+      "name": "Sector Rotation Heatmap",
+      "passed": true,
+      "details": "NSE sector cards visible",
+      "timestamp": "2026-10-30T14:22:01.372Z"
+    },
+    {
+      "suite": "Market Insights",
+      "name": "Top Gainers & Lagging Stocks",
+      "passed": true,
+      "details": "Movers split list loaded",
+      "timestamp": "2026-10-30T14:22:01.372Z"
+    },
+    {
+      "suite": "Watchlist",
+      "name": "Watchlist Page Loaded",
+      "passed": true,
+      "details": "Header loaded",
+      "timestamp": "2026-10-30T14:22:01.676Z"
+    },
+    {
+      "suite": "Research & News",
+      "name": "Aggregated Financial News Feed",
+      "passed": true,
+      "details": "Feed items rendered",
+      "timestamp": "2026-10-30T14:22:01.917Z"
+    },
+    {
+      "suite": "Research & News",
+      "name": "Grounded AI Research Assistant",
+      "passed": true,
+      "details": "Query input and chips ready",
+      "timestamp": "2026-10-30T14:22:01.917Z"
+    },
+    {
+      "suite": "Settings",
+      "name": "System Health Re-check Action",
+      "passed": true,
+      "details": "Health re-checked successfully",
+      "timestamp": "2026-10-30T14:22:02.730Z"
+    },
+    {
+      "suite": "Settings",
+      "name": "Settings Page Verification",
+      "passed": true,
+      "details": "Settings form rendered",
+      "timestamp": "2026-10-30T14:22:02.730Z"
+    },
+    {
+      "suite": "Console Integrity",
+      "name": "Zero Uncaught JS / Hydration Errors",
+      "passed": true,
+      "details": "0 critical console errors",
+      "timestamp": "2026-10-30T14:22:02.730Z"
+    }
+  ]
+}

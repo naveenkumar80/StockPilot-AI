@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-30T12:49:27.255983",
-  "tournament_duration_ms": 6023.99,
+  "last_updated": "2026-10-30T14:22:30.833808",
+  "tournament_duration_ms": 5224.48,
   "total_samples": 887,
   "champion_version": "v1.0.0-lgbm",
   "champion": {
@@ -16,7 +16,7 @@
     "recall_buy": 0.7566,
     "walk_forward_sharpe": 3.02,
     "status": "CHAMPION",
-    "promoted_at": "2026-10-30T12:49:27.256024"
+    "promoted_at": "2026-10-30T14:22:30.833852"
   },
   "challengers": [
     {

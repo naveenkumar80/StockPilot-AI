@@ -154,6 +154,8 @@ def main():
         "--port",
         str(args.backend_port),
         "--reload",
+        "--reload-dir",
+        os.path.join(root_dir, "services", "api"),
     ]
 
     backend_proc = subprocess.Popen(

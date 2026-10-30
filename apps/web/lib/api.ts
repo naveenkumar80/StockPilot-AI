@@ -224,16 +224,23 @@ export interface SyncResult {
 
 
 async function handleResponse<T>(res: Response): Promise<T> {
+  const text = await res.text()
   if (!res.ok) {
-    const errorText = await res.text()
     try {
-      const parsed = JSON.parse(errorText)
+      const parsed = JSON.parse(text)
       throw new Error(parsed.detail || parsed.message || `API Error: ${res.status}`)
     } catch (e: any) {
       throw new Error(e.message || `API Error: ${res.status}`)
     }
   }
-  return res.json()
+  if (!text || text.trim() === "") {
+    return {} as T
+  }
+  try {
+    return JSON.parse(text)
+  } catch (err: any) {
+    return text as unknown as T
+  }
 }
 
 export const api = {

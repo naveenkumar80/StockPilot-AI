@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useMemo } from "react"
+import React, { useState } from "react"
 import { Candle } from "@/lib/api"
 import { formatINR } from "@/lib/utils"
 
@@ -10,7 +10,7 @@ interface CandlestickChartProps {
   symbol?: string
 }
 
-export function CandlestickChart({ candles, height = 380, symbol = "EQUITY" }: CandlestickChartProps) {
+export function CandlestickChart({ candles = [], height = 380, symbol = "EQUITY" }: CandlestickChartProps) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null)
   const [showEMA20, setShowEMA20] = useState(true)
   const [showEMA50, setShowEMA50] = useState(false)
@@ -24,54 +24,50 @@ export function CandlestickChart({ candles, height = 380, symbol = "EQUITY" }: C
     )
   }
 
-  // Pre-calculate indicators on the full series
-  const indicators = useMemo(() => {
-    const closes = candles.map((c) => c.close)
-    const n = closes.length
+  // Pre-calculate indicators on the full series (Pure computation, zero hooks after early return)
+  const closes = candles.map((c) => c.close)
+  const totalN = closes.length
 
-    // EMA calculation helper
-    const calcEMA = (period: number) => {
-      const k = 2 / (period + 1)
-      const ema: (number | null)[] = new Array(n).fill(null)
-      if (n < period) return ema
+  // EMA calculation helper
+  const calcEMA = (period: number) => {
+    const k = 2 / (period + 1)
+    const ema: (number | null)[] = new Array(totalN).fill(null)
+    if (totalN < period) return ema
 
-      // Initial SMA
-      let sum = 0
-      for (let i = 0; i < period; i++) sum += closes[i]
-      ema[period - 1] = sum / period
+    let sum = 0
+    for (let i = 0; i < period; i++) sum += closes[i]
+    ema[period - 1] = sum / period
 
-      // Recursive EMA
-      for (let i = period; i < n; i++) {
-        ema[i] = closes[i] * k + (ema[i - 1] as number) * (1 - k)
-      }
-      return ema
+    for (let i = period; i < totalN; i++) {
+      ema[i] = closes[i] * k + (ema[i - 1] as number) * (1 - k)
     }
+    return ema
+  }
 
-    // Bollinger Bands (20 period, 2 std dev)
-    const calcBB = (period = 20, mult = 2) => {
-      const upper: (number | null)[] = new Array(n).fill(null)
-      const lower: (number | null)[] = new Array(n).fill(null)
-      const mid: (number | null)[] = new Array(n).fill(null)
+  // Bollinger Bands (20 period, 2 std dev)
+  const calcBB = (period = 20, mult = 2) => {
+    const upper: (number | null)[] = new Array(totalN).fill(null)
+    const lower: (number | null)[] = new Array(totalN).fill(null)
+    const mid: (number | null)[] = new Array(totalN).fill(null)
 
-      for (let i = period - 1; i < n; i++) {
-        const slice = closes.slice(i - period + 1, i + 1)
-        const mean = slice.reduce((a, b) => a + b, 0) / period
-        const variance = slice.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / period
-        const std = Math.sqrt(variance)
+    for (let i = period - 1; i < totalN; i++) {
+      const slice = closes.slice(i - period + 1, i + 1)
+      const mean = slice.reduce((a, b) => a + b, 0) / period
+      const variance = slice.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / period
+      const std = Math.sqrt(variance)
 
-        mid[i] = mean
-        upper[i] = mean + mult * std
-        lower[i] = mean - mult * std
-      }
-      return { upper, lower, mid }
+      mid[i] = mean
+      upper[i] = mean + mult * std
+      lower[i] = mean - mult * std
     }
+    return { upper, lower, mid }
+  }
 
-    return {
-      ema20: calcEMA(20),
-      ema50: calcEMA(50),
-      bb: calcBB(20, 2),
-    }
-  }, [candles])
+  const indicators = {
+    ema20: calcEMA(20),
+    ema50: calcEMA(50),
+    bb: calcBB(20, 2),
+  }
 
   // Slice to last 60 candles for crisp display
   const displayCandles = candles.slice(-60)
@@ -101,65 +97,50 @@ export function CandlestickChart({ candles, height = 380, symbol = "EQUITY" }: C
   const activeFullIdx = hoverIdx !== null ? displaySliceStart + hoverIdx : candles.length - 1
 
   // Path generators for indicators
-  const ema20Path = useMemo(() => {
-    if (!showEMA20) return ""
-    let d = ""
+  let ema20Path = ""
+  if (showEMA20) {
     for (let i = 0; i < n; i++) {
       const fullIdx = displaySliceStart + i
       const val = indicators.ema20[fullIdx]
       if (val !== null) {
         const x = padding.left + i * spacing
         const y = getY(val)
-        d += d === "" ? `M${x},${y}` : ` L${x},${y}`
+        ema20Path += ema20Path === "" ? `M${x},${y}` : ` L${x},${y}`
       }
     }
-    return d
-  }, [showEMA20, displaySliceStart, n, indicators.ema20, minPrice, priceRange, priceHeight])
+  }
 
-  const ema50Path = useMemo(() => {
-    if (!showEMA50) return ""
-    let d = ""
+  let ema50Path = ""
+  if (showEMA50) {
     for (let i = 0; i < n; i++) {
       const fullIdx = displaySliceStart + i
       const val = indicators.ema50[fullIdx]
       if (val !== null) {
         const x = padding.left + i * spacing
         const y = getY(val)
-        d += d === "" ? `M${x},${y}` : ` L${x},${y}`
+        ema50Path += ema50Path === "" ? `M${x},${y}` : ` L${x},${y}`
       }
     }
-    return d
-  }, [showEMA50, displaySliceStart, n, indicators.ema50, minPrice, priceRange, priceHeight])
+  }
 
-  const bbUpperPath = useMemo(() => {
-    if (!showBB) return ""
-    let d = ""
+  let bbUpperPath = ""
+  let bbLowerPath = ""
+  if (showBB) {
     for (let i = 0; i < n; i++) {
       const fullIdx = displaySliceStart + i
-      const val = indicators.bb.upper[fullIdx]
-      if (val !== null) {
-        const x = padding.left + i * spacing
-        const y = getY(val)
-        d += d === "" ? `M${x},${y}` : ` L${x},${y}`
+      const upperVal = indicators.bb.upper[fullIdx]
+      const lowerVal = indicators.bb.lower[fullIdx]
+      const x = padding.left + i * spacing
+      if (upperVal !== null) {
+        const yUpper = getY(upperVal)
+        bbUpperPath += bbUpperPath === "" ? `M${x},${yUpper}` : ` L${x},${yUpper}`
+      }
+      if (lowerVal !== null) {
+        const yLower = getY(lowerVal)
+        bbLowerPath += bbLowerPath === "" ? `M${x},${yLower}` : ` L${x},${yLower}`
       }
     }
-    return d
-  }, [showBB, displaySliceStart, n, indicators.bb.upper, minPrice, priceRange, priceHeight])
-
-  const bbLowerPath = useMemo(() => {
-    if (!showBB) return ""
-    let d = ""
-    for (let i = 0; i < n; i++) {
-      const fullIdx = displaySliceStart + i
-      const val = indicators.bb.lower[fullIdx]
-      if (val !== null) {
-        const x = padding.left + i * spacing
-        const y = getY(val)
-        d += d === "" ? `M${x},${y}` : ` L${x},${y}`
-      }
-    }
-    return d
-  }, [showBB, displaySliceStart, n, indicators.bb.lower, minPrice, priceRange, priceHeight])
+  }
 
   return (
     <div className="w-full bg-[#12161F] border border-[#252E3E] rounded-xl p-4 flex flex-col gap-2.5 shadow-sm">

@@ -2,7 +2,7 @@
   "model_version": "v1.1.0-ensemble",
   "algorithm": "Stacked Soft-Voting Ensemble (LightGBM + RF)",
   "features_schema_version": "schema_v1_price_news",
-  "trained_at": "2026-10-30T12:49:27.257348",
+  "trained_at": "2026-10-30T14:22:30.835548",
   "samples_count": 887,
   "walk_forward_evaluation": {
     "brier_score": 0.2588,
